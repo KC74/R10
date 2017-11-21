@@ -5,9 +5,13 @@ import Router from "../../navigation/routes";
 import About from "./About";
 
 class AboutContainer extends Component {
-  state = {
-    isLoading: true
-  };
+  constructor(props) {
+    super(props);
+    this._goBack = this._goBack.bind(this);
+    this.state = {
+      isLoading: true
+    };
+  }
 
   static route = {
     navigationBar: {
@@ -15,9 +19,9 @@ class AboutContainer extends Component {
     }
   };
 
-  _goToSchedule = () => {
-    this.props.navigator.push(Router.getRoute("schedule"));
-  };
+  _goBack() {
+    this.props.navigator.pop();
+  }
 
   componentDidMount() {
     fetch("https://r10app-95fea.firebaseio.com/code_of_conduct.json")
@@ -32,7 +36,7 @@ class AboutContainer extends Component {
       <ActivityIndicator size="large" color="skyblue" animating={true} />
     ) : (
       <View>
-        <Text onPress={this._goToSchedule}>Go To Schedules</Text>
+        <Text onPress={this._goBack}>X</Text>
         <About data={data} />
       </View>
     );
