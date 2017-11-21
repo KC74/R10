@@ -1,10 +1,22 @@
 import React, { Component } from "react";
-import { Text, ActivityIndicator } from "react-native";
+import { Text, ActivityIndicator, View } from "react-native";
+import { StackNavigation } from "@expo/ex-navigation";
+import Router from "../../navigation/routes";
 import About from "./About";
 
 class AboutContainer extends Component {
   state = {
     isLoading: true
+  };
+
+  static route = {
+    navigationBar: {
+      title: "About"
+    }
+  };
+
+  _goToSchedule = () => {
+    this.props.navigator.push(Router.getRoute("schedule"));
   };
 
   componentDidMount() {
@@ -19,7 +31,10 @@ class AboutContainer extends Component {
     return isLoading ? (
       <ActivityIndicator size="large" color="skyblue" animating={true} />
     ) : (
-      <About data={data} />
+      <View>
+        <Text onPress={this._goToSchedule}>Go To Schedules</Text>
+        <About data={data} />
+      </View>
     );
   }
 }

@@ -6,31 +6,38 @@ import styles from "./styles";
 
 const About = ({ data }) => {
   let key = 0;
+  const {
+    container,
+    logoContainer,
+    headers,
+    subHeadings,
+    itemContent,
+    paddingTopBtmLarge,
+    marginSpaceTopBtmLarge
+  } = styles;
+
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.test}>
-        <View style={styles.logoContainer}>
-          <Logo />
-        </View>
-        <Text>
-          R10 is a conference that focuses on just about any topic related to
-          dev.
-        </Text>
-        <Text style={styles.headers}>Date & Venue</Text>
-        <Text>
-          The R10 conference will take place on Tuesday, June 27, 2017 in
-          Vancouver, BC.
-        </Text>
-        <Text style={styles.headers}>Code of Conduct</Text>
-        {data.map(item => {
-          return (
-            <View key={key++}>
-              <Text style={styles.subHeadings}>+ {item.title}</Text>
-              <Text style={styles.itemContent}>{item.description}</Text>
-            </View>
-          );
-        })}
+    <ScrollView style={container}>
+      <View style={[logoContainer, paddingTopBtmLarge]}>
+        <Logo />
       </View>
+      <Text>
+        R10 is a conference that focuses on just about any topic related to dev.
+      </Text>
+      <Text style={[headers, marginSpaceTopBtmLarge]}>Date & Venue</Text>
+      <Text>
+        The R10 conference will take place on Tuesday, June 27, 2017 in
+        Vancouver, BC.
+      </Text>
+      <Text style={[headers, marginSpaceTopBtmLarge]}>Code of Conduct</Text>
+      {data.map(item => {
+        return (
+          <View key={key++}>
+            <Text style={subHeadings}>+ {item.title}</Text>
+            <Text style={itemContent}>{item.description}</Text>
+          </View>
+        );
+      })}
     </ScrollView>
   );
 };

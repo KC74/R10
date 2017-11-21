@@ -2,11 +2,17 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   // styles here
+  marginSpaceTopBtmLarge: {
+    marginBottom: 20,
+    marginTop: 20
+  },
+  paddingTopBtmLarge: {
+    paddingTop: 15,
+    paddingBottom: 15
+  },
   logoContainer: {
     flex: 1,
     alignItems: "center",
-    paddingTop: 15,
-    paddingBottom: 15,
     marginBottom: 20,
     borderBottomColor: "#e6e6e6",
     borderBottomWidth: 1
@@ -17,8 +23,6 @@ const styles = StyleSheet.create({
   },
   headers: {
     fontSize: 24,
-    marginTop: 20,
-    marginBottom: 20,
     fontFamily: "Montserrat-Regular"
   },
   subHeadings: {
@@ -27,8 +31,8 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat-Regular"
   },
   itemContent: {
-    marginBottom: 20,
-    fontFamily: "Montserrat-Light"
+    fontFamily: "Montserrat-Light",
+    marginBottom: 20
   }
 });
 
