@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, Text } from "react-native";
+import SessionSchedules from "../../components/SessionSchedules";
 
-const Schedule = props => {
+const Schedule = ({ data }) => {
   return (
     <View>
-      <Text>This is schedule</Text>
+      <SessionSchedules data={data} />
     </View>
   );
 };
