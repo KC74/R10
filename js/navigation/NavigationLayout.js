@@ -36,6 +36,30 @@ class NavigationLayout extends Component {
           />
         </TabItem>
         <TabItem
+          id="map"
+          title="Map"
+          renderTitle={this.renderTitle}
+          renderIcon={isSelected => this.renderIcon("ios-map", isSelected)}
+        >
+          <StackNavigation
+            id="map"
+            navigatorUID="map"
+            initialRoute={Router.getRoute("map")}
+          />
+        </TabItem>
+        <TabItem
+          id="faves"
+          title="Faves"
+          renderTitle={this.renderTitle}
+          renderIcon={isSelected => this.renderIcon("ios-heart", isSelected)}
+        >
+          <StackNavigation
+            id="faves"
+            navigatorUID="faves"
+            initialRoute={Router.getRoute("faves")}
+          />
+        </TabItem>
+        <TabItem
           id="about"
           title="About"
           renderTitle={this.renderTitle}

@@ -4,6 +4,12 @@ import { View } from "react-native";
 import Map from "./Map";
 
 class MapContainer extends Component {
+  static route = {
+    navigationBar: {
+      title: "Map"
+    }
+  };
+
   render() {
     return (
       <View>

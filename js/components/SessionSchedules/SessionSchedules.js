@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { View, Text, SectionList } from "react-native";
 
 const SessionSchedules = ({ sessions }) => {
-  return sessions ? (
+  return (
     <View>
       <SectionList
         renderItem={({ item }) => {
@@ -15,15 +15,12 @@ const SessionSchedules = ({ sessions }) => {
           );
         }}
         renderSectionHeader={({ section }) => {
-          console.log(section);
           return <Text>{section.title}</Text>;
         }}
         sections={sessions}
         keyExtractor={item => item.title}
       />
     </View>
-  ) : (
-    <Text>Loading..</Text>
   );
 };
 
