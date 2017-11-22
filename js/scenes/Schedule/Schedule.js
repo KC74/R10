@@ -3,14 +3,16 @@ import PropTypes from "prop-types";
 import { View, Text } from "react-native";
 import SessionSchedules from "../../components/SessionSchedules";
 
-const Schedule = ({ data }) => {
+const Schedule = ({ sessions }) => {
   return (
     <View>
-      <SessionSchedules data={data} />
+      <SessionSchedules sessions={sessions} />
     </View>
   );
 };
 
-Schedule.propTypes = {};
+Schedule.propTypes = {
+  sessions: PropTypes.array
+};
 
 export default Schedule;

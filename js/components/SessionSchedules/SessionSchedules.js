@@ -2,30 +2,33 @@ import React from "react";
 import PropTypes from "prop-types";
 import { View, Text, SectionList } from "react-native";
 
-const SessionSchedules = ({ data }) => {
-  return (
+const SessionSchedules = ({ sessions }) => {
+  return sessions ? (
     <View>
       <SectionList
-        renderItem={({ item }) => <Text>{item}</Text>}
-        renderSectionHeader={({ section }) => <Text>{section.title}</Text>}
-        sections={[
-          // homogenous rendering between sections
-          { data: ["a"], title: "title: a" },
-          { data: ["b"], title: "title: b" },
-          { data: ["c"], title: "title: c" },
-          { data: ["a"], title: "title: a" },
-          { data: ["b"], title: "title: b" },
-          { data: ["c"], title: "title: c" },
-          { data: ["a"], title: "title: a" },
-          { data: ["b"], title: "title: b" },
-          { data: ["c"], title: "title: c" },
-          { data: ["a"], title: "title: a" }
-        ]}
+        renderItem={({ item }) => {
+          return (
+            <View>
+              <Text>{item.title}</Text>
+              <Text>{item.location}</Text>
+            </View>
+          );
+        }}
+        renderSectionHeader={({ section }) => {
+          console.log(section);
+          return <Text>{section.title}</Text>;
+        }}
+        sections={sessions}
+        keyExtractor={item => item.title}
       />
     </View>
+  ) : (
+    <Text>Loading..</Text>
   );
 };
 
-SessionSchedules.propTypes = {};
+SessionSchedules.propTypes = {
+  sessions: PropTypes.array
+};
 
 export default SessionSchedules;

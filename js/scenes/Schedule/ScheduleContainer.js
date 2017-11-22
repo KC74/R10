@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Schedule from "./Schedule";
 import { connect } from "react-redux";
 import { getSessionSchedules } from "../../redux/modules/sessions";
+import { View, ActivityIndicator } from "react-native";
 
 class ScheduleContainer extends Component {
   static route = {
@@ -13,15 +14,27 @@ class ScheduleContainer extends Component {
 
   componentDidMount() {
     this.props.dispatch(getSessionSchedules());
-    // fetch data
-    // put data through to get formatted
-    // formatSessionData();
   }
+
   render() {
-    return <Schedule data="Hello" />;
+    const { sessionSchedulesData, isLoading } = this.props;
+    return (
+      <View style={{ flex: 1, width: "100%" }}>
+        {isLoading ? (
+          <View style={{ marginTop: "50%" }}>
+            <ActivityIndicator size="large" color="skyblue" animating={true} />
+          </View>
+        ) : (
+          <Schedule sessions={sessionSchedulesData} />
+        )}
+      </View>
+    );
   }
 }
 
-ScheduleContainer.propTypes = {};
+ScheduleContainer.propTypes = {
+  sessionSchedulesData: PropTypes.array,
+  isLoading: PropTypes.bool
+};
 
 export default connect(store => store.sessionSchedules)(ScheduleContainer);
