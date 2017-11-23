@@ -18,8 +18,13 @@ const realm = new Realm({
 export const getFaves = () => {
   let faves = realm.objects("Faves");
 
-  console.log(faves);
-  return faves;
+  return faves.length === 0 ? false : faves;
+};
+
+export const deleteAllFaves = () => {
+  realm.write(() => {
+    realm.deleteAll();
+  });
 };
 
 export const addFave = id => {
@@ -32,14 +37,14 @@ export const addFave = id => {
           id,
           faved_on: new Date(Date.now())
         });
-        console.log(fave.id, fave.faved_on);
         return fave;
       });
     } catch (e) {
       console.log(e);
+      return e;
     }
   } else {
-    console.log("ID exists already!", faves);
+    console.log("ID exists already!", id);
   }
 };
 
@@ -50,11 +55,11 @@ export const removeFave = id => {
     try {
       realm.write(() => {
         const fave = realm.delete(faves);
-        console.log("deleted successfully.", id);
         return fave;
       });
     } catch (e) {
       console.log(e);
+      return e;
     }
   } else {
     console.log("ID does not exist!", id);
