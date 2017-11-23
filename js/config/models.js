@@ -9,10 +9,14 @@ const FavesSchema = {
   }
 };
 
+// const realm = new Realm({
+//   schema: [FavesSchema],
+//   path:
+//     "/Users/Ken/Documents/RED Academy/Fullstack Development/App-Dev/Projects/R10/R10/local-realm/r10.realm"
+// });
+
 const realm = new Realm({
-  schema: [FavesSchema],
-  path:
-    "/Users/Ken/Documents/RED Academy/Fullstack Development/App-Dev/Projects/R10/R10/local-realm/r10.realm"
+  schema: [FavesSchema]
 });
 
 export const getFaves = () => {
@@ -22,9 +26,15 @@ export const getFaves = () => {
 };
 
 export const deleteAllFaves = () => {
-  realm.write(() => {
-    realm.deleteAll();
-  });
+  try {
+    realm.write(() => {
+      realm.deleteAll();
+    });
+    console.log("Removed all!");
+  } catch (e) {
+    console.log(e);
+    return e;
+  }
 };
 
 export const addFave = id => {
@@ -37,6 +47,8 @@ export const addFave = id => {
           id,
           faved_on: new Date(Date.now())
         });
+        console.log("Successfully added!", fave);
+        console.log("Path:", realm.path);
         return fave;
       });
     } catch (e) {
@@ -55,6 +67,7 @@ export const removeFave = id => {
     try {
       realm.write(() => {
         const fave = realm.delete(faves);
+        console.log("Successfully removed!", id);
         return fave;
       });
     } catch (e) {

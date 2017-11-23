@@ -64,7 +64,8 @@ class NavigationLayout extends Component {
           title="About"
           renderTitle={this.renderTitle}
           renderIcon={isSelected =>
-            this.renderIcon("ios-information-circle", isSelected)}
+            this.renderIcon("ios-information-circle", isSelected)
+          }
         >
           <StackNavigation
             id="about"

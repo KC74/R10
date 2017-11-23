@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { typography } from "../../config/styles";
 
 const styles = StyleSheet.create({
   // styles here
@@ -23,16 +24,16 @@ const styles = StyleSheet.create({
   },
   headers: {
     fontSize: 24,
-    fontFamily: "Montserrat-Regular"
+    fontFamily: typography.fontMainReg
   },
   subHeadings: {
     color: "#9963ea",
     marginBottom: 20,
-    fontFamily: "Montserrat-Regular"
+    fontFamily: typography.fontMainReg
   },
   itemContent: {
-    fontFamily: "Montserrat-Light",
-    marginBottom: 20
+    marginBottom: 20,
+    fontFamily: typography.fontMainLight
   }
 });
 
