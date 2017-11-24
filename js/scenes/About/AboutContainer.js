@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { Text, ActivityIndicator, View } from "react-native";
-import { StackNavigation } from "@expo/ex-navigation";
+import { ActivityIndicator, View } from "react-native";
 import { connect } from "react-redux";
 import { getConducts } from "../../redux/modules/conduct";
-import Router from "../../navigation/routes";
 import About from "./About";
 
 class AboutContainer extends Component {

@@ -8,11 +8,24 @@ import { Text } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import Router from "../navigation/routes";
 import styles from "./styles";
+import LinearGradient from "react-native-linear-gradient";
+import { titleBar, colors } from "../config/styles";
 
 class NavigationLayout extends Component {
-  static route = {
+  route = {
     navigationBar: {
-      visible: false
+      visible: false,
+      titleStyle: titleBar.titleStyle,
+      renderBackground: function() {
+        return (
+          <LinearGradient
+            colors={[colors.red, colors.purple]}
+            style={titleBar.linearGradient}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
+          />
+        );
+      }
     }
   };
 
@@ -33,6 +46,7 @@ class NavigationLayout extends Component {
           <StackNavigation
             id="schedule"
             initialRoute={Router.getRoute("schedule")}
+            defaultRouteConfig={this.defaultRouteConfig}
           />
         </TabItem>
         <TabItem
@@ -45,6 +59,7 @@ class NavigationLayout extends Component {
             id="map"
             navigatorUID="map"
             initialRoute={Router.getRoute("map")}
+            defaultRouteConfig={this.defaultRouteConfig}
           />
         </TabItem>
         <TabItem
@@ -57,6 +72,7 @@ class NavigationLayout extends Component {
             id="faves"
             navigatorUID="faves"
             initialRoute={Router.getRoute("faves")}
+            defaultRouteConfig={this.defaultRouteConfig}
           />
         </TabItem>
         <TabItem
@@ -71,6 +87,7 @@ class NavigationLayout extends Component {
             id="about"
             navigatorUID="about"
             initialRoute={Router.getRoute("about")}
+            defaultRouteConfig={this.defaultRouteConfig}
           />
         </TabItem>
       </TabNavigation>

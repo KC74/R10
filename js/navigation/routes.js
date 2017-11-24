@@ -3,18 +3,14 @@ import About from "../scenes/About";
 import Schedule from "../scenes/Schedule";
 import Map from "../scenes/Map";
 import Faves from "../scenes/Faves";
-import LayoutIOS from "./NavigationLayout";
-import LayoutAndroid from "./NavigationLayout.android";
-import { Platform } from "react-native";
+import Layout from "./NavigationLayout";
 
 const Router = createRouter(() => ({
-  layout: () => {
-    return Platform.OS === "ios" ? LayoutIOS : LayoutAndroid;
-  },
+  layout: () => Layout,
   about: () => About,
   schedule: () => Schedule,
-  map: () => Map,
-  faves: () => Faves
+  faves: () => Faves,
+  map: () => Map
 }));
 
 export default Router;

@@ -1,3 +1,3 @@
-import FavesContainer from "./Faves";
+import FavesContainer from "./FavesContainer";
 
 export default FavesContainer;

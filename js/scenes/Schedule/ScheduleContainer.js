@@ -4,7 +4,7 @@ import Schedule from "./Schedule";
 import { connect } from "react-redux";
 import { getSessionSchedules } from "../../redux/modules/sessions";
 import { View, ActivityIndicator } from "react-native";
-import LinearGradient from "react-native-linear-gradient";
+// import styles from "./styles";
 
 class ScheduleContainer extends Component {
   static route = {
