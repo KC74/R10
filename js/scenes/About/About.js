@@ -1,9 +1,17 @@
 import React from "react";
-import { Text, ScrollView, FlatList, View, Image } from "react-native";
+import { Text, ScrollView, View } from "react-native";
 import PropTypes from "prop-types";
 import Logo from "../../components/Logo";
 import styles from "./styles";
-import { typography } from "../../config/styles";
+import Conducts from "../../components/Conducts";
+
+// const animationConfig = {
+//   duration: 1000,
+//   update: {
+//     type: "spring",
+//     springDamping: 0.1 // lower == more dramatic spring
+//   }
+// };
 
 const About = ({ data }) => {
   let key = 0;
@@ -11,8 +19,6 @@ const About = ({ data }) => {
     container,
     logoContainer,
     headers,
-    subHeadings,
-    itemContent,
     paddingTopBtmLarge,
     marginSpaceTopBtmLarge
   } = styles;
@@ -33,10 +39,11 @@ const About = ({ data }) => {
       <Text style={[headers, marginSpaceTopBtmLarge]}>Code of Conduct</Text>
       {data.map(item => {
         return (
-          <View key={key++}>
-            <Text style={subHeadings}>+ {item.title}</Text>
-            <Text style={itemContent}>{item.description}</Text>
-          </View>
+          <Conducts
+            key={key++}
+            title={item.title}
+            description={item.description}
+          />
         );
       })}
     </ScrollView>

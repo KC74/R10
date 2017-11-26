@@ -14,7 +14,6 @@ import { titleBar, colors } from "../config/styles";
 class NavigationLayout extends Component {
   route = {
     navigationBar: {
-      visible: false,
       titleStyle: titleBar.titleStyle,
       renderBackground: function() {
         return (
@@ -46,7 +45,7 @@ class NavigationLayout extends Component {
           <StackNavigation
             id="schedule"
             initialRoute={Router.getRoute("schedule")}
-            defaultRouteConfig={this.defaultRouteConfig}
+            defaultRouteConfig={this.route}
           />
         </TabItem>
         <TabItem
@@ -59,7 +58,7 @@ class NavigationLayout extends Component {
             id="map"
             navigatorUID="map"
             initialRoute={Router.getRoute("map")}
-            defaultRouteConfig={this.defaultRouteConfig}
+            defaultRouteConfig={this.route}
           />
         </TabItem>
         <TabItem
@@ -72,7 +71,7 @@ class NavigationLayout extends Component {
             id="faves"
             navigatorUID="faves"
             initialRoute={Router.getRoute("faves")}
-            defaultRouteConfig={this.defaultRouteConfig}
+            defaultRouteConfig={this.route}
           />
         </TabItem>
         <TabItem
@@ -87,7 +86,7 @@ class NavigationLayout extends Component {
             id="about"
             navigatorUID="about"
             initialRoute={Router.getRoute("about")}
-            defaultRouteConfig={this.defaultRouteConfig}
+            defaultRouteConfig={this.route}
           />
         </TabItem>
       </TabNavigation>

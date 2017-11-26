@@ -39,7 +39,7 @@ export default (state = initialState, action) => {
     case GET_SESSION_SCHEDULES_SUCCESS:
       return {
         ...state,
-        sessionSchedulesData: formatSessionData(action.data),
+        sessionSchedulesData: action.data,
         isLoading: false
       };
     case GET_SESSION_SCHEDULES_ERROR:
