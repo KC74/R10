@@ -6,7 +6,8 @@ import {
   Text,
   Platform,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from "react-native";
 import { isFaved, removeFave, addFave } from "../../config/models";
 import { colors } from "../../config/styles";
@@ -21,6 +22,7 @@ const Session = ({ session, speakerData }) => {
 
   return (
     <ScrollView style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <View style={styles.wrapper}>
         <Text style={styles.sectionLocation}>{session.location}</Text>
         <Text style={styles.faveIcon}>

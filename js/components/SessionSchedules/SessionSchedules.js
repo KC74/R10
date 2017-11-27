@@ -5,7 +5,8 @@ import {
   View,
   Text,
   SectionList,
-  TouchableHighlight
+  TouchableHighlight,
+  StatusBar
 } from "react-native";
 import { addFave } from "../../config/models";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -18,6 +19,7 @@ import { goToSession } from "../../lib/navigationHelpers";
 const SessionSchedules = ({ sessions, currentNavigatorUID }) => {
   return sessions !== undefined ? (
     <View>
+      <StatusBar barStyle="light-content" />
       <SectionList
         ItemSeparatorComponent={() => <View style={styles.sessionSeparator} />}
         renderItem={({ item }) => {
