@@ -39,4 +39,11 @@ ScheduleContainer.propTypes = {
   isLoading: PropTypes.bool
 };
 
-export default connect(store => store.sessionSchedules)(ScheduleContainer);
+function mapStateToProps(state) {
+  return {
+    sessionSchedulesData: state.sessionSchedules.sessionSchedulesData,
+    isLoading: state.sessionSchedules.isLoading
+  };
+}
+
+export default connect(mapStateToProps)(ScheduleContainer);

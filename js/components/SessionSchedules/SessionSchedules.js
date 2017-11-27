@@ -12,19 +12,10 @@ import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 import styles from "./styles";
 import { colors } from "../../config/styles";
-import { getFaves } from "../../config/models";
+import { getFaves, isFaved } from "../../config/models";
 import { goToSession } from "../../lib/navigationHelpers";
 
 const SessionSchedules = ({ sessions, currentNavigatorUID }) => {
-  const isFaved = id => {
-    const session = getFaves() ? getFaves().filtered("id == $0", id) : 0;
-
-    if (session.length) {
-      return true;
-    }
-    return false;
-  };
-
   return sessions !== undefined ? (
     <View>
       <SectionList
@@ -71,7 +62,8 @@ const SessionSchedules = ({ sessions, currentNavigatorUID }) => {
 };
 
 SessionSchedules.propTypes = {
-  sessions: PropTypes.array
+  sessions: PropTypes.array,
+  currentNavigatorUID: PropTypes.string
 };
 
 export default SessionSchedules;

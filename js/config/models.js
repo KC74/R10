@@ -22,7 +22,17 @@ const realm = new Realm({
 export const getFaves = () => {
   let faves = realm.objects("Faves");
 
-  return faves.length === 0 ? false : faves;
+  return faves.length === 0 ? {} : faves;
+};
+
+export const isFaved = id => {
+  const session =
+    getFaves().length > 0 ? getFaves().filtered("id == $0", id) : 0;
+
+  if (session.length) {
+    return true;
+  }
+  return false;
 };
 
 export const deleteAllFaves = () => {
@@ -39,43 +49,31 @@ export const deleteAllFaves = () => {
 
 export const addFave = id => {
   let faves = realm.objects("Faves").filtered("id == $0", id);
-
-  if (faves.length === 0) {
-    try {
-      realm.write(() => {
-        const fave = realm.create("Faves", {
-          id,
-          faved_on: new Date(Date.now())
-        });
-        console.log("Successfully added!", fave);
-        console.log("Path:", realm.path);
-        return fave;
+  try {
+    realm.write(() => {
+      realm.create("Faves", {
+        id,
+        faved_on: new Date(Date.now())
       });
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
-  } else {
-    console.log("ID exists already!", id);
+      console.log("Successfully added!", realm.path);
+    });
+  } catch (e) {
+    console.log(e);
+    return e;
   }
 };
 
 export const removeFave = id => {
   let faves = realm.objects("Faves").filtered("id == $0", id);
-
-  if (faves.length === 1) {
-    try {
-      realm.write(() => {
-        const fave = realm.delete(faves);
-        console.log("Successfully removed!", id);
-        return fave;
-      });
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
-  } else {
-    console.log("ID does not exist!", id);
+  try {
+    realm.write(() => {
+      realm.delete(faves);
+      console.log("Successfully removed!", id);
+      console.log("Successfully removed!", realm.path);
+    });
+  } catch (e) {
+    console.log(e);
+    return e;
   }
 };
 
