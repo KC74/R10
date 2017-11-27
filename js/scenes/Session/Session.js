@@ -1,9 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ScrollView, View, Text, Platform, Image } from "react-native";
+import {
+  ScrollView,
+  View,
+  Text,
+  Platform,
+  Image,
+  TouchableOpacity
+} from "react-native";
 import { isFaved, removeFave, addFave } from "../../config/models";
 import { colors } from "../../config/styles";
 import { FaveButton } from "../../components/FaveButton";
+import { goToSpeaker } from "../../lib/navigationHelpers";
 import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 import styles from "./styles";
@@ -38,7 +46,9 @@ const Session = ({ session, speakerData }) => {
               source={{ uri: speakerData.image }}
               style={styles.speakerAvatar}
             />
-            <Text style={styles.speakerName}>{speakerData.name}</Text>
+            <TouchableOpacity onPress={() => goToSpeaker(speakerData)}>
+              <Text style={styles.speakerName}>{speakerData.name}</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.sessionSeparator} />
           <View style={styles.buttonContainer}>

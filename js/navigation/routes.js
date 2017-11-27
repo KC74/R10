@@ -4,6 +4,7 @@ import Schedule from "../scenes/Schedule";
 import Map from "../scenes/Map";
 import Faves from "../scenes/Faves";
 import Session from "../scenes/Session";
+import Speaker from "../scenes/Speaker";
 import Layout from "./NavigationLayout";
 
 const Router = createRouter(() => ({
@@ -12,6 +13,7 @@ const Router = createRouter(() => ({
   schedule: () => Schedule,
   faves: () => Faves,
   session: () => Session,
+  speaker: () => Speaker,
   map: () => Map
 }));
 

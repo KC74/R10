@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     width: "100%",
-    alignItems: "center"
+    alignItems: "center",
+    marginBottom: 40
   },
   sectionTitle: {
     marginTop: 15,

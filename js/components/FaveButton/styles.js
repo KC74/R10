@@ -1,17 +1,20 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../config/styles";
+import { colors, typography } from "../../config/styles";
 
 const styles = StyleSheet.create({
   faveButton: {
     width: "50%",
     backgroundColor: colors.purple,
-    borderRadius: 25,
-    borderWidth: 10,
+    borderRadius: 30,
+    borderWidth: 15,
     borderColor: colors.purple
   },
   faveButtonText: {
     color: "white",
-    textAlign: "center"
+    textAlign: "center",
+    fontSize: 14,
+
+    fontFamily: typography.fontMainReg
   }
 });
 
