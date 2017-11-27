@@ -4,6 +4,7 @@ import Session from "./Session";
 import { View } from "react-native";
 import { connect } from "react-redux";
 import { getFaves } from "../../redux/modules/faves";
+import { getSpeaker } from "../../redux/modules/speakers";
 import realm from "../../config/models";
 
 class SessionContainer extends Component {
@@ -16,6 +17,7 @@ class SessionContainer extends Component {
   componentDidMount() {
     realm.addListener("change", this._updateFaves);
     this.props.dispatch(getFaves());
+    this.props.dispatch(getSpeaker(this.props.currentSession.speaker));
   }
 
   componentWillUnmount() {
@@ -26,23 +28,25 @@ class SessionContainer extends Component {
     this.props.dispatch(getFaves());
   };
   render() {
-    const { currentSession } = this.props;
+    const { currentSession, speaker } = this.props;
     return (
       <View>
-        <Session session={currentSession} />
+        <Session session={currentSession} speakerData={speaker} />
       </View>
     );
   }
 }
 
 SessionContainer.propTypes = {
-  currentSession: PropTypes.object
+  currentSession: PropTypes.object,
+  speaker: PropTypes.object
 };
 
 function mapStateToProps(state) {
   return {
     isLoading: state.sessionSchedules.isLoading,
-    faves: state.faves.favesData
+    faves: state.faves.favesData,
+    speaker: state.speaker.speakerData
   };
 }
 
