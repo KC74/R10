@@ -22,9 +22,7 @@ class FavesContainer extends Component {
     if (getFaves()) {
       const filteredSessions = sessions.filter(session => {
         return getFaves().find(fave => {
-          if (session.session_id === fave.id) {
-            return session;
-          }
+          return session.session_id === fave.id && session;
         });
       });
       return formatSessionData(filteredSessions);

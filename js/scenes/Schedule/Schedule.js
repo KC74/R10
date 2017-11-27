@@ -6,7 +6,11 @@ import SessionSchedules from "../../components/SessionSchedules";
 const Schedule = ({ sessions }) => {
   return (
     <View>
-      <SessionSchedules sessions={sessions} />
+      {sessions.length > 0 ? (
+        <SessionSchedules sessions={sessions} currentNavigatorUID="schedule" />
+      ) : (
+        <Text>There are currently no sessions.</Text>
+      )}
     </View>
   );
 };

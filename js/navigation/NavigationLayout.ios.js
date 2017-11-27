@@ -31,8 +31,8 @@ class NavigationLayout extends Component {
   render() {
     return (
       <TabNavigation
-        id="main"
         tabBarColor="black"
+        id="main"
         navigatorUID="main"
         initialTab="schedule"
       >
@@ -44,10 +44,12 @@ class NavigationLayout extends Component {
         >
           <StackNavigation
             id="schedule"
+            navigatorUID="schedule"
             initialRoute={Router.getRoute("schedule")}
             defaultRouteConfig={this.route}
           />
         </TabItem>
+
         <TabItem
           id="map"
           title="Map"

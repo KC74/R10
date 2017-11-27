@@ -1,14 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Platform, View, Text, SectionList } from "react-native";
+import {
+  Platform,
+  View,
+  Text,
+  SectionList,
+  TouchableHighlight
+} from "react-native";
 import { addFave } from "../../config/models";
 import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 import styles from "./styles";
 import { colors } from "../../config/styles";
 import { getFaves } from "../../config/models";
+import { goToSession } from "../../lib/navigationHelpers";
 
-const SessionSchedules = ({ sessions }) => {
+const SessionSchedules = ({ sessions, currentNavigatorUID }) => {
   const isFaved = id => {
     const session = getFaves() ? getFaves().filtered("id == $0", id) : 0;
 
@@ -24,24 +31,29 @@ const SessionSchedules = ({ sessions }) => {
         ItemSeparatorComponent={() => <View style={styles.sessionSeparator} />}
         renderItem={({ item }) => {
           return (
-            <View>
-              <Text style={styles.sectionTitle}>{item.title}</Text>
-              <View style={styles.container}>
-                <Text style={styles.sectionLocation}>{item.location}</Text>
-                <Text
-                  style={styles.faveIcon}
-                  onPress={() => addFave(item.session_id)}
-                >
-                  {isFaved(item.session_id) && (
-                    <Icon
-                      name={Platform.OS === "ios" ? "ios-heart" : "md-heart"}
-                      size={15}
-                      color={colors.red}
-                    />
-                  )}
-                </Text>
+            <TouchableHighlight
+              onPress={() => goToSession(currentNavigatorUID, item)}
+              underlayColor={"rgba(230,230,230, 0.5)"}
+            >
+              <View>
+                <Text style={styles.sectionTitle}>{item.title}</Text>
+                <View style={styles.container}>
+                  <Text style={styles.sectionLocation}>{item.location}</Text>
+                  <Text
+                    style={styles.faveIcon}
+                    onPress={() => addFave(item.session_id)}
+                  >
+                    {isFaved(item.session_id) && (
+                      <Icon
+                        name={Platform.OS === "ios" ? "ios-heart" : "md-heart"}
+                        size={15}
+                        color={colors.red}
+                      />
+                    )}
+                  </Text>
+                </View>
               </View>
-            </View>
+            </TouchableHighlight>
           );
         }}
         renderSectionHeader={({ section }) => {

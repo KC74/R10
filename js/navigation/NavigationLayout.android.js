@@ -29,7 +29,7 @@ class NavigationLayout extends Component {
   };
   render() {
     return (
-      <DrawerNavigation id="main" initialItem="schedule" drawerWidth={200}>
+      <DrawerNavigation initialItem="schedule" drawerWidth={200}>
         <DrawerNavigationItem
           id="schedule"
           selectedStyle={styles.selectedItemStyle}
